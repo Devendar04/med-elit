@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Merienda:wght@300..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Medicine Options</title>
+  <link rel="stylesheet" href="medi.css">
+  <style>
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: #f0f0f0;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #2a2a72;
+      color: #fff;
+      text-align: center;
+      padding: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    h1 {
+      font-family: 'Merienda', cursive;
+      font-size: 2.5em;
+    }
+
+    main {
+      padding: 20px;
+      max-width: 1200px;
+      margin: auto;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .options-container {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .option-checkbox {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      margin-bottom: 15px;
+      background-color: #ffffff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 10px;
+      box-sizing: border-box;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+    }
+
+    .option-checkbox img {
+      margin-right: 15px;
+      width: 60px;
+      height: 60px;
+    }
+
+    .option-checkbox input[type="checkbox"] {
+      margin-right: 15px;
+      cursor: pointer;
+      appearance: none;
+      -webkit-appearance: none;
+      border: 2px solid #007bff;
+      border-radius: 4px;
+      width: 25px;
+      height: 25px;
+      outline: none;
+      transition: background-color 0.3s ease, border-color 0.3s ease;
+      position: relative;
+    }
+
+    .option-checkbox input[type="checkbox"]::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 12px;
+      height: 6px;
+      border: solid #007bff;
+      border-width: 0 0 2px 2px;
+      transform: rotate(45deg) translate(-50%, -50%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .option-checkbox input[type="checkbox"]:checked {
+      background-color: #007bff;
+      border-color: #007bff;
+    }
+
+    .option-checkbox input[type="checkbox"]:checked::before {
+      opacity: 1;
+    }
+
+    .option-checkbox:hover {
+      background-color: #f9f9f9;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+      transform: scale(1.02);
+    }
+
+    .option-checkbox:active {
+      background-color: #f0f0f0;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+      transform: scale(0.98);
+    }
+
+    .option-checkbox label {
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+
+    .option-checkbox:hover label {
+      color: #007bff;
+    }
+
+    .button {
+      background-color: #007bff;
+      border: none;
+      color: #fff;
+      border-radius: 8px;
+      padding: 15px 25px;
+      font-size: 1em;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      margin: 10px 0;
+    }
+
+    .button:hover {
+      background-color: #0056b3;
+      transform: scale(1.05);
+    }
+
+    .button:active {
+      background-color: #004494;
+      transform: scale(0.95);
+    }
+
+    .text {
+      width: calc(100% - 22px);
+      padding: 15px;
+      margin-top: 20px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      box-sizing: border-box;
+      font-size: 1em;
+    }
+
+    #voice-control {
+      margin-top: 20px;
+      padding: 15px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      background-color: #ffffff;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .medicine-info {
+      display: none;
+      margin-top: 20px;
+      padding: 15px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      background-color: #ffffff;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .medicine-info:hover {
+      background-color: #f5f5f5;
+      transform: scale(1.02);
+    }
+
+    .medicine-info:active {
+      background-color: #e0e0e0;
+      transform: scale(0.98);
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    li {
+      margin-bottom: 10px;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Select Your Condition</h1>
+  </header>
+  <main>
+    <div class="options-container">
+      <!-- Fever checkbox option -->
+      <div class="option-checkbox">
+        <input type="checkbox" id="feverCheck" value="fever">
+        <img src="fever.webp" alt="Fever">
+        <label for="feverCheck">Fever</label>
+      </div>
+      <!-- Cough and Cold checkbox option -->
+      <div class="option-checkbox">
+        <input type="checkbox" id="coldCoughCheck" value="coldAndCough">
+        <img src="cough and cold.webp" alt="Cough and Cold">
+        <label for="coldCoughCheck">Cough Cold</label>
+      </div>
+      <!-- Headache checkbox option -->
+      <div class="option-checkbox">
+        <input type="checkbox" id="headacheCheck" value="headache">
+        <img src="headache.jpeg" alt="Headache">
+        <label for="headacheCheck">Headache</label>
+      </div>
+      <!-- Stomach Pain checkbox option -->
+      <div class="option-checkbox">
+        <input type="checkbox" id="stomachPainCheck" value="stomachPain">
+        <img src="stomach pain.webp" alt="Stomach Pain">
+        <label for="stomachPainCheck">Stomach Pain</label>
+      </div>
+    </div>
+
+    <!-- OK Button -->
+    <button class="button" onclick="confirmSelection()">OK</button>
+
+    <!-- Fever medicine info -->
+    <a href="buying.html"  id="fever" class="medicine-info" onclick="openNewPage('fever')"> 
+      <h2>Fever Medicines</h2> <ul>
+        <li>Paracetamol: 500mg, every 6 hours</li>
+        <li>Ibuprofen: 200mg, every 8 hours</li>
+      </ul>
+      
+    </a>
+
+    <!-- Cold and Cough medicine info -->
+    <a href="buying cough.html" id="coldAndCough" class="medicine-info" onclick="openNewPage('cough.html')"> <h2>Cough and Cold Medicines</h2>
+      <ul>
+        <li>Diphenhydramine: 25mg, every 8 hours</li>
+        <li>Dextromethorphan: 10ml, every 6 hours</li>
+      </ul>
+
+ 
+</a>
+
+
+
+<script>
+  // Function to open a new page with details for the selected condition
+  function openNewPage(pageUrl) {
+    window.location.href = pageUrl; // Redirects to the specified page
+  }
+</script>
+
+
+    <!-- Headache medicine info -->
+    <a href="buying headace.html" id="headache" class="medicine-info" onclick="openNewPage('headache')">
+      <h2>Headache Medicines</h2>
+      <ul>
+        <li>Aspirin: 300mg, every 4 hours</li>
+        <li>Acetaminophen: 500mg, every 6 hours</li>
+      </ul>
+    </a>
+
+    <!-- Stomach Pain medicine info -->
+    <a href="buying stomach pain.html" id="stomachPain" class="medicine-info" onclick="openNewPage('stomachPain')">
+      <h2>Stomach Pain Medicines</h2>
+      <ul>
+        <li>Omeprazole: 20mg, once daily</li>
+        <li>Buscopan: 10mg, every 6 hours</li>
+      </ul>
+    </a>
+
+    <!-- Voice Control Section -->
+    <div id="voice-control">
+      <p>Click the button below and say the condition you want to select:</p>
+      <button class="button" onclick="startVoiceRecognition()">Start Voice Recognition</button>
+    </div>
+
+    <!-- Text Input for diseases -->
+    <div>
+      <input placeholder="Enter the diseases here" class="text">
+    </div>
+  </main>
+
+  <script>
+    // Function to toggle medicine info based on checkbox selection
+    function toggleMedicineInfo(checkboxId, medicineId) {
+      var checkbox = document.getElementById(checkboxId);
+      var medicineSection = document.getElementById(medicineId);
+
+      if (checkbox.checked) {
+        medicineSection.style.display = 'block';
+      } else {
+        medicineSection.style.display = 'none';
+      }
+    }
+
+    // Function to open a new page with details for the selected condition
+    function openNewPage(medicineId) {
+      var pageUrl = medicineId + 'buying cough.html';
+      window.location.href = pageUrl;
+    }
+
+    // Function to confirm selection and display the relevant info
+    function confirmSelection() {
+      var feverChecked = document.getElementById('feverCheck').checked;
+      var coldCoughChecked = document.getElementById('coldCoughCheck').checked;
+      var headacheChecked = document.getElementById('headacheCheck').checked;
+      var stomachPainChecked = document.getElementById('stomachPainCheck').checked;
+
+      var medicineSections = document.querySelectorAll('.medicine-info');
+      medicineSections.forEach(function(section) {
+        section.style.display = 'none';
+      });
+
+      // Show relevant sections based on selection
+      if (feverChecked) {
+        document.getElementById('fever').style.display = 'block';
+      }
+      if (coldCoughChecked) {
+        document.getElementById('coldAndCough').style.display = 'block';
+      }
+      if (headacheChecked) {
+        document.getElementById('headache').style.display = 'block';
+      }
+      if (stomachPainChecked) {
+        document.getElementById('stomachPain').style.display = 'block';
+      }
+    }
+
+    function startVoiceRecognition() {
+      if ('webkitSpeechRecognition' in window) {
+        var recognition = new webkitSpeechRecognition();
+        recognition.lang = 'en-US';
+        recognition.onstart = function() {
+          console.log('Voice recognition started. Speak into the microphone.');
+        };
+        recognition.onresult = function(event) {
+          var speechResult = event.results[0][0].transcript.toLowerCase();
+          console.log('Result received: ' + speechResult);
+
+          // List of conditions to check for
+          var conditions = {
+            fever: 'feverCheck',
+            'cold': 'coldCoughCheck',
+            'cough': 'coldCoughCheck',
+            headache: 'headacheCheck',
+            'stomach pain': 'stomachPainCheck'
+          };
+
+          Object.keys(conditions).forEach(condition => {
+            if (speechResult.includes(condition)) {
+              document.getElementById(conditions[condition]).checked = true;
+              toggleMedicineInfo(conditions[condition], conditions[condition].replace('Check', ''));
+            }
+          });
+
+          confirmSelection();
+        };
+        recognition.onerror = function(event) {
+          console.log('Error occurred in recognition: ' + event.error);
+        };
+        recognition.onend = function() {
+          console.log('Voice recognition ended.');
+        };
+        recognition.start();
+      } else {
+        alert('Your browser does not support voice recognition. Please use Chrome or another compatible browser.');
+      }
+    }
+    
+    function openNewPage(medicineId) {
+  var pageUrl = 'medicine_info.html?condition=' + medicineId;
+  window.location.href = pageUrl;
+}
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Merienda:wght@300..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Medicine Options</title>
+  <style>
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: #f0f0f0;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #2a2a72;
+      color: #fff;
+      text-align: center;
+      padding: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    h1 {
+      font-family: 'Merienda', cursive;
+      font-size: 2.5em;
+    }
+
+    main {
+      padding: 20px;
+      max-width: 1200px;
+      margin: auto;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .options-container {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .option-checkbox {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      margin-bottom: 15px;
+      background-color: #ffffff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 10px;
+      box-sizing: border-box;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+    }
+
+    .option-checkbox img {
+      margin-right: 15px;
+      width: 60px;
+      height: 60px;
+    }
+
+    .option-checkbox input[type="checkbox"] {
+      margin-right: 15px;
+      cursor: pointer;
+      appearance: none;
+      -webkit-appearance: none;
+      border: 2px solid #007bff;
+      border-radius: 4px;
+      width: 25px;
+      height: 25px;
+      outline: none;
+      transition: background-color 0.3s ease, border-color 0.3s ease;
+      position: relative;
+    }
+
+    .option-checkbox input[type="checkbox"]::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 12px;
+      height: 6px;
+      border: solid #007bff;
+      border-width: 0 0 2px 2px;
+      transform: rotate(45deg) translate(-50%, -50%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .option-checkbox input[type="checkbox"]:checked {
+      background-color: #007bff;
+      border-color: #007bff;
+    }
+
+    .option-checkbox input[type="checkbox"]:checked::before {
+      opacity: 1;
+    }
+
+    .option-checkbox:hover {
+      background-color: #f9f9f9;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+      transform: scale(1.02);
+    }
+
+    .option-checkbox:active {
+      background-color: #f0f0f0;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+      transform: scale(0.98);
+    }
+
+    .option-checkbox label {
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+
+    .option-checkbox:hover label {
+      color: #007bff;
+    }
+
+    .button {
+      background-color: #007bff;
+      border: none;
+      color: #fff;
+      border-radius: 8px;
+      padding: 15px 25px;
+      font-size: 1em;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      margin: 10px 0;
+    }
+
+    .button:hover {
+      background-color: #0056b3;
+      transform: scale(1.05);
+    }
+
+    .button:active {
+      background-color: #004494;
+      transform: scale(0.95);
+    }
+
+    .text {
+      width: calc(100% - 22px);
+      padding: 15px;
+      margin-top: 20px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      box-sizing: border-box;
+      font-size: 1em;
+    }
+
+    #voice-control {
+      margin-top: 20px;
+      padding: 15px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      background-color: #ffffff;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .medicine-info {
+      display: none;
+      margin-top: 20px;
+      padding: 15px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      background-color: #ffffff;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .medicine-info:hover {
+      background-color: #f5f5f5;
+      transform: scale(1.02);
+    }
+
+    .medicine-info:active {
+      background-color: #e0e0e0;
+      transform: scale(0.98);
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    li {
+      margin-bottom: 10px;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>अपनी स्थिति चुनें</h1>
+  </header>
+  <main>
+    <div class="options-container">
+      <!-- Fever checkbox option -->
+      <label class="option-checkbox">
+        <input type="checkbox" id="feverCheck" value="fever">
+        <img src="fever.webp" alt="Fever">
+        बुखार
+      </label>
+      <!-- Cough and Cold checkbox option -->
+      <label class="option-checkbox">
+        <input type="checkbox" id="coldCoughCheck" value="coldAndCough">
+        <img src="cough and cold.webp" alt="Cough and Cold">
+        खांसी और सर्दी
+      </label>
+      <!-- Headache checkbox option -->
+      <label class="option-checkbox">
+        <input type="checkbox" id="headacheCheck" value="headache">
+        <img src="headache.jpeg" alt="Headache">
+        सिरदर्द
+      </label>
+      <!-- Stomach Pain checkbox option -->
+      <label class="option-checkbox">
+        <input type="checkbox" id="stomachPainCheck" value="stomachPain">
+        <img src="stomach pain.webp" alt="Stomach Pain">
+        पेट दर्द
+      </label>
+    </div>
+
+    <!-- OK Button -->
+    <button class="button" onclick="confirmSelection()">OK</button>
+
+    <!-- Fever medicine info -->
+    <a href="bukhar.html" id="fever" class="medicine-info">
+      <h2>बुखार की दवा</h2>
+      <ul>
+        <li>पेरासिटामोल: 500 मिलीग्राम, हर 6 घंटे में</li>
+        <li>इबुप्रोफेन: 200 मिलीग्राम, हर 8 घंटे में</li>
+      </ul>
+    </a>
+
+    <!-- Cold and Cough medicine info -->
+    <a href="sardi khasi.html" id="coldAndCough" class="medicine-info">
+      <h2>खांसी और सर्दी की दवाएँ</h2>
+      <ul>
+        <li>डिफेनहाइड्रामाइन: 25 मिलीग्राम, हर 8 घंटे में</li>
+        <li>डेक्सट्रोमेथॉर्फ़न: 10 मि.ली., हर 6 घंटे में</li>
+      </ul>
+    </a>
+
+    <!-- Headache medicine info -->
+    <a href="sir dard.html" id="headache" class="medicine-info">
+      <h2>सिरदर्द की दवाएँ</h2>
+      <ul>
+        <li>एस्पिरिन: 300 मिलीग्राम, हर 4 घंटे में</li>
+        <li>एसिटामिनोफेन: 500 मिलीग्राम, हर 6 घंटे में</li>
+      </ul>
+    </a>
+
+    <!-- Stomach Pain medicine info -->
+    <a href="pet dard.html" id="stomachPain" class="medicine-info">
+      <h2>पेट दर्द की दवाएँ</h2>
+      <ul>
+        <li>डायक्लोमीन: 10 मिलीग्राम, आवश्यकतानुसार</li>
+        <li>ओमप्राज़ोल: 20 मिलीग्राम, दिन में एक बार</li>
+      </ul>
+    </a>
+
+    <!-- Voice Control Button -->
+    <div id="voice-control">
+      <button class="button" onclick="startVoiceRecognition()">Speak Symptoms</button>
+    </div>
+  </main>
+
+  <script>
+    function confirmSelection() {
+      const checkboxes = document.querySelectorAll('.options-container input[type="checkbox"]');
+      let anyChecked = false;
+      
+      checkboxes.forEach(checkbox => {
+        const medicineInfo = document.getElementById(checkbox.value);
+        if (checkbox.checked) {
+          medicineInfo.style.display = 'block';
+          anyChecked = true;
+        } else {
+          medicineInfo.style.display = 'none';
+        }
+      });
+
+      if (!anyChecked) {
+        alert('कृपया एक विकल्प चुनें।');
+      }
+    }
+
+    // Voice recognition implementation
+    function startVoiceRecognition() {
+      const recognition = new webkitSpeechRecognition(); // use webkitSpeechRecognition for Chrome
+
+      recognition.lang = 'hi-IN'; // Set to Hindi
+      recognition.continuous = false; // Listen for a single phrase
+
+      recognition.onstart = function() {
+        console.log('Voice recognition started. Please speak.');
+      };
+
+      recognition.onspeechend = function() {
+        recognition.stop();
+      };
+
+      recognition.onresult = function(event) {
+        const transcript = event.results[0][0].transcript.toLowerCase();
+        console.log('Heard:', transcript);
+
+        // Map spoken words to checkbox options
+        const checkboxes = {
+          'बुखार': 'feverCheck',
+          'सर्दी': 'coldCoughCheck',
+          'खांसी': 'coldCoughCheck',
+          'सिरदर्द': 'headacheCheck',
+          'पेट दर्द': 'stomachPainCheck'
+        };
+
+        let foundMatch = false;
+        for (const [symptom, checkboxId] of Object.entries(checkboxes)) {
+          if (transcript.includes(symptom)) {
+            document.getElementById(checkboxId).checked = true;
+            foundMatch = true;
+          }
+        }
+
+        if (!foundMatch) {
+          alert('कोई मेल खाने वाला लक्षण नहीं मिला। कृपया फिर से प्रयास करें।');
+        } else {
+          confirmSelection(); // Automatically confirm after recognition
+        }
+      };
+
+      recognition.onerror = function(event) {
+        console.error('Voice recognition error:', event.error);
+        alert('वॉयस रिकग्निशन में समस्या हुई। कृपया फिर से प्रयास करें।');
+      };
+
+      recognition.start();
+    }
+  </script>
+</body>
+</html>

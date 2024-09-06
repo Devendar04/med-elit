@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,300;1,400&display=swap" rel="stylesheet">
+
+  <title>Med Elite - Medicine Support</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Roboto Condensed", sans-serif;
+    }
+
+    body {
+      background-color: #f4f4f4;
+      color: #333;
+    }
+
+    header {
+      margin: 20px;
+      text-align: center;
+    }
+
+    h1 {
+      font-weight: 700;
+      font-size: 2.5em;
+      color: #fff;
+      background: linear-gradient(135deg, #4fc7ff, #2a2a72);
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+      margin-bottom: 50px;
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+      transition: transform 0.4s;
+    }
+
+    h1:hover {
+      transform: scale(1.05);
+    }
+
+    main {
+      position: relative;
+      height: 100vh;
+      background-image: url("path/to/your/background-image.jpg"); /* Replace with your background image path */
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    #top {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.85);
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .divme {
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+    }
+
+    .nav-link {
+      color: #2a2a72;
+      text-decoration: none;
+      font-size: 1.3em;
+      font-weight: 600;
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+
+    .nav-link:hover {
+      color: #4fc7ff;
+      transform: scale(1.1);
+    }
+
+    #button_container {
+      margin-bottom: 20px;
+    }
+
+    .button {
+      padding: 15px 30px;
+      text-align: center;
+      border: none;
+      background: linear-gradient(135deg, #2a2a72, #4fc7ff);
+      border-radius: 30px;
+      color: #fff;
+      font-size: 1.5em;
+      font-weight: 600;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    .button:hover {
+      background: linear-gradient(135deg, #4fc7ff, #2a2a72);
+      transform: scale(1.05);
+    }
+
+    .centered-image {
+      display: none; /* Hide the image if you want to use the background image for the main section */
+    }
+    
+    .centered-image img {
+      max-width: 100%;
+      height: auto;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1 class="c1" id="color">How May I Help You? <br>क्या मेरे द्वारा आपकी कोई सहायता हो सकती है</h1>
+  </header>
+
+  <main>
+    <div id="top">
+      <div class="divme">
+        <a href="#" class="nav-link">Help and Support</a>
+        <a href="#" class="nav-link">Contact Us</a>
+      </div>
+      <div id="button_container">
+        <a href="language.html" class="button">ENTER TO GET MEDICINE</a>
+      </div>
+
+      <!-- Remove or hide this if the background image is sufficient -->
+      <div class="centered-image">
+        <img src="image copy.png" alt="Medicine Support Image" />
+      </div>
+    </div>
+  </main>
+</body>
+</html>
